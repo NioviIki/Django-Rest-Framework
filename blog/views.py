@@ -20,4 +20,4 @@ class CommentViewSet(viewsets.ModelViewSet):
     """
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializers
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]

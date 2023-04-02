@@ -9,9 +9,15 @@ class Posts(models.Model):
     date = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.subject
+
 
 class Comments(models.Model):
     text = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.text

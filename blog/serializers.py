@@ -18,12 +18,14 @@ from rest_framework import serializers
 from blog.models import Posts, Comments
 
 
-class PostSerializers(serializers.ModelSerializer):
+class PostSerializers(serializers.HyperlinkedModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = Posts
-        fields = ['id', 'subject', 'text', 'date', 'owner',]
+        fields = ['url', 'id', 'subject', 'text', 'date', 'owner',]
 
-class CommentsSerializers(serializers.ModelSerializer):
+class CommentsSerializers(serializers.HyperlinkedModelSerializer):
+    owners = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = Comments
-        fields =['id', 'text', 'date', 'post', 'owner']
+        fields = ['url', 'id', 'text', 'date', 'post', 'owners']

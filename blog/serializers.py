@@ -1,20 +1,6 @@
 from blog.models import Comments, Posts
 
-from django.contrib.auth.models import Group, User
-
 from rest_framework import serializers
-
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ['url', 'name']
 
 
 class PostSerializers(serializers.HyperlinkedModelSerializer):
@@ -27,7 +13,8 @@ class PostSerializers(serializers.HyperlinkedModelSerializer):
 
 class CommentsSerializers(serializers.HyperlinkedModelSerializer):
     owners = serializers.ReadOnlyField(source='owner.username')
+    post_text = serializers.ReadOnlyField(source='post.text')
 
     class Meta:
         model = Comments
-        fields = ['url', 'id', 'text', 'date', 'post', 'owners']
+        fields = ['url', 'id', 'text', 'date', 'post_text', 'post', 'owners']

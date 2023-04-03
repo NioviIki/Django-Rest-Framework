@@ -1,13 +1,8 @@
-from blog import views
+from blog.urls import router
 
 from django.urls import include, path
 
-from rest_framework import routers
 
-
-router = routers.DefaultRouter()
-router.register(r'post', views.PostViewSet)
-router.register(r'comment', views.CommentViewSet)
 
 
 urlpatterns = [

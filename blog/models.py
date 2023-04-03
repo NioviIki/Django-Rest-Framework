@@ -21,4 +21,4 @@ class Comments(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self):
-        return self.text
+        return f'{self.owner}: {self.text}'

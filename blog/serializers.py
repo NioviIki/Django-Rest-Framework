@@ -5,10 +5,11 @@ from rest_framework import serializers
 
 class PostSerializers(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
+    comments = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Posts
-        fields = ['url', 'id', 'subject', 'text', 'date', 'owner',]
+        fields = ['url', 'id', 'subject', 'text', 'date', 'owner', 'comments']
 
 
 class CommentsSerializers(serializers.HyperlinkedModelSerializer):
